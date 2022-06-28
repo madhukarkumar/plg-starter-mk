@@ -4,7 +4,6 @@ import Script from "next/script";
 export default function Widget() {
     
   return (
-        <div>
           <Script
            id="devrev_plug"
            onLoad={async () => {
@@ -22,6 +21,5 @@ export default function Widget() {
            }}
            src={"https://plug.devrev.ai/nextplug/widget.js"}
  />
-        </div>
 )
 }
