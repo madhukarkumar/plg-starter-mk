@@ -18,7 +18,7 @@ export async function getStaticProps() {
   // Details of the RevUser.
 
   const appToken = process.env.APP_TOKEN
-
+  // const sessionToken = appToken;
   const headers = {
     'Authorization': appToken
   };
