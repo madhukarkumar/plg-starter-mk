@@ -1,0 +1,95 @@
+---
+title: 'DevRev Parts'
+date: 2021-07-30T15:32:14Z
+lastmod: '2021-02-01'
+tags: ['Part']
+draft: false
+summary: 'Defining a DevRev Part'
+layout: PostSimple
+bibliography: references-data.bib
+---
+# Overview
+We define ***Part*** as a related piece of a product that has a lifecycle (creation, evolution, deprecation), and can be recursively made of smaller parts. Events and work items can be specific to any type of part.
+
+We break a "part" down into two core categories:
+
+# Rev Parts
+
+Rev parts relate to how a product is expressed, integrated, or consumed. These parts may be purchased and interacted with by internal (employees) and external (revs) customers.
+Rev parts are of three main types Product, Capability and Features.
+
+## Product
+At the highest level of the part hierarchy is a product or service. An organisation may have one or more products or services that they deliver to their customers. A product is usually the entity around which a business is organised and their Profit and Loss(PnL) is monitored.
+These are some guidelines to define a Product:
+- The Product should have a **Minimal** set of capabilities (i.e., the product’s platform)
+- The Product should be the **lowest** level in the part hierarchy where **revenue** can be assigned
+- The Product should be the **lowest** level in the part hierarchy where a **market category** is created
+
+Following are typical examples of products based on a few industries:
+
+### E-Commerce
+- Warehouse Management Software
+- Delivery App
+- Order Management
+
+### Communications 
+- Chat App
+- Web app
+
+## Capabilities
+An independent set of features, that is prominent enough to define a minimum product offering and is measurable, observable, upgradable, and potentially monetizable.
+
+Examples of Products and Capabilities:
+
+Chat, Status and Voice Calls are examples of capabilities for the Chat App Product
+
+Catalogue, Customer Notification and Delivery tracking are examples of capabilities for the Order Management product
+
+## Features
+A feature exists under a capability and is commonly a unit of configuration or "knobs" in a capability.
+Features typically have the following characteristics:
+
+Exists under a capability
+Provides a unit of configuration (adjective) for entities managed by the capability
+Enable version history (adjective) on object
+May provide a subset of the API namespace
+Are commonly not interacted with outside the context of the capability (if directly interacted with at all)
+
+Building on the example of the Chat App Product, the hierarchy would be as follows:
+
+Product: Chat App 
+  Capability: Chat
+    Features:
+      Encryption
+      Disappearing messages
+      Image Chat
+      Animations / Gifs
+
+
+# Dev Parts
+
+The code, service or components built or used by the developer are called Dev Parts. 
+A Dev Part may be a "runnable", like a microservice or an executable. Runnable parts often expose APIs. A Dev Part may alternatively be a "linkable", like a library or a component, which other Dev Parts may depend on and use. Although they often provide the functionality the customer ultimately consumes, they are often abstracted and unknown to the him.
+
+The Dev Part currently exposed in the Trail is a Microservice runnable part. 
+
+Features and Capabilities (Rev Parts) are often served by one or more Microservices (Runnable Dev Parts). 
+
+Microservices typically have the following characteristics:
+
+- They often expose and are interacted with via APIs, RPCs or UI
+- They may be published in a service registry or accessed through a load balancer
+- They are a unit of functionality that can be developed and deployed independently
+
+DevRev Trails visualizes the entire Product hierarchy by connecting the Dev Parts to the Rev Parts.
+
+![trails](https://user-images.githubusercontent.com/86735914/165638023-b6583f9c-09a9-4e73-a1a4-feb18af9f5bd.png)
+
+# Parts Discovery
+Once DevRev is granted access to the customer's git repositories, Parts Discovery process is enabled and can help in automatically discovering various parts. Feature Rev Parts can be discovered by analyzing OpenAPI specification files found in the repos. Runnable and Linkable Dev Parts can be discovered by analyzing various build files, CI files and more.
+
+The customer may also provide further hints to help Part Discovery process in revealing Rev Parts, Dev Parts and links between them by providing a `custom_routing.json` file that implements a simple schema.
+
+Following is an example of the custom file and the corresponding trail showing the parts discovered through it:
+
+<Image width="1424" height="890" alt="custom_config" src="/static/images/part.png"/>
