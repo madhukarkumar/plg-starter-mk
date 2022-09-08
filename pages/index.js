@@ -17,19 +17,20 @@ export async function getStaticProps() {
 
   // Details of the RevUser.
 
-  const appToken = process.env.APP_TOKEN
-  // const sessionToken = appToken;
-  const headers = {
-    'Authorization': appToken
-  };
-  const response = await axios.post(url, {
-    "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
-    // below is the details for your RevUser, customise as needed.
-    "subject_token": JSON.stringify({ "email": "email", "display_name": "displayName", "full_name": "fullName" }),
-    "subject_token_type": "urn:devrev:params:oauth:token-type:userinfo",
-    "requested_token_type": "urn:devrev:params:oauth:token-type:session"
-  }, { headers })
-  const sessionToken = response.data["access_token"];
+  // const appToken = process.env.APP_TOKEN
+  // // const sessionToken = appToken;
+  // const headers = {
+  //   'Authorization': appToken
+  // };
+  // const response = await axios.post(url, {
+  //   "grant_type": "urn:ietf:params:oauth:grant-type:token-exchange",
+  //   // below is the details for your RevUser, customise as needed.
+  //   "subject_token": JSON.stringify({ "email": "email", "display_name": "displayName", "full_name": "fullName" }),
+  //   "subject_token_type": "urn:devrev:params:oauth:token-type:userinfo",
+  //   "requested_token_type": "urn:devrev:params:oauth:token-type:session"
+  // }, { headers })
+  // const sessionToken = response.data["access_token"];
+  const sessionToken = "dummy";
 
   return { props: { posts, sessionToken } }
 }
@@ -38,7 +39,7 @@ export default function Home({ posts, sessionToken }) {
   return (
     <>
       <PageSEO title={siteMetadata.title} description={siteMetadata.description} />
-      <Widget token={sessionToken}></Widget>
+      {/* <Widget token={sessionToken}></Widget> */}
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
