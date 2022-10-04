@@ -12,7 +12,7 @@ export const ClientReload = () => {
     import('socket.io-client').then((module) => {
       const socket = module.io()
       socket.on('reload', (data) => {
-        Router.replace(Router.asPath, undefined, {
+        r.replace(Router.asPath, undefined, {
           scroll: false,
         })
       })

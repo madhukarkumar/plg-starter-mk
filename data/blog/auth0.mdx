@@ -1,0 +1,63 @@
+---
+title: 'Implementing auth0'
+date: 2021-08-31T15:32:14Z
+lastmod: '2021-02-01'
+tags: ['Step 2']
+draft: false
+summary: 'Set up auth0 for authentication'
+layout: PostSimple
+bibliography: references-data.bib
+---
+## Overview
+Follow the instructions below in sequential order to start using auth0! This process should be quick and easy, taking no more than 10 minutes.
+
+
+
+<TOCInline toc={props.toc} exclude="Overview" toHeading={2} />
+
+## Create Auth0 account
+1. Navigate to [auth0.com](https://auth0.com/signup?place=header&type=button&text=sign%20up)
+2. Sign up for your account
+
+
+
+![Button](/static/images/auth0app.png)
+
+3. Select regular web applications
+
+![Button](/static/images/regwebapp.png)
+
+3. Select NextJS
+<Image alt="support" src="/static/images/nextjs.png" width={1921} height={1149} />
+
+4. Navigate to `Settings` 
+5. First within `Settings` navigate down to `Application URls` and modify the links to mimic the following
+<Image alt="support" src="/static/images/urls.png" width={1600} height={1200} />
+
+6. Then navigate back to the top of `Settings` and access the following information for the next steps
+
+<Image alt="support" src="/static/images/auth0data.png" width={1921} height={1149} />
+
+## Modifying this Repo
+1. Navigate to `.env.local`
+2. Modify `AUTH0_SECRET`, `AUTH0_BASE_URL`, `AUTH0_ISSUER_BASE_URL`, `AUTH0_CLIENT_ID`, and `AUTH0_CLIENT_SECRET` with the instructions in the codeblock
+```js:.env.local-original {6} showLineNumbers
+AUTH0_SECRET='574cfa529528cb782358852b1322a8f2905c1efc6375d0aa07a902a877cb945a'
+AUTH0_BASE_URL='http://localhost:3000'
+AUTH0_ISSUER_BASE_URL='https://dev-fovn1s7y.us.auth0.com'
+AUTH0_CLIENT_ID='dFb3YDjxvkJAOLMO2R0F38Ete07VwvYD'
+AUTH0_CLIENT_SECRET='PEBFg3rswdgRHt9Sxq8AgwlWv_VnEsYqktHm7Bt-FaJ-foOjel7I45tdrPOsm_Cv'
+DEVREV_PLUG_TOKEN='eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9zdHMuZGV2cmV2LmFpIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiZXhwIjoxNjY2MjM3MTc4LCJodHRwOi8vZGV2cmV2LmFpL2NsaWVudGlkIjoiMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtNVJPd3kxMEQiLCJodHRwOi8vZGV2cmV2LmFpL3N2Y2FjYyI6ImRvbjppZGVudGl0eTpkdnJ2LXVzLTE6ZGV2by81Uk93eTEwRDpzdmNhY2MvMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOmFhdCIsImlhdCI6MTY2MzgxNzk3OCwiaXNzIjoiaHR0cDovL3N0cy5kZXZyZXYuYWkiLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6dG9rZW4vTVcxRlZQc3MiLCJzdWIiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6c3ZjYWNjLzFUSDdUMiJ9.X6kKBzb1JVj-HpEcbHV5tGAN_9-pL2RpMm4qK-fqUVJnYOlk1oUba2-0d0U8TPcwCUknuJhBevTrmIU28NXeCN7mqIDvCz6BUVlHuPgEjffX7Go0z73D8sLsjsDl6oWKGvGq68DupyBk-xd1necM7uzWuI3dNXrji7EF5IZHvJi4k1wmLusJq7eiXR8j7saBF8Ud9mVBVTB0TAsP7Q9W7SwfWkRRVulxAvzeCai2h-ibnbv6o5eXZnOouLwEpCBWy1ls7HW0rMk3NeYf5Q83AlFxvlTCNg0bjg3nWgBaJyVb_54CItWy4q5oQJNLJ-v8wJKWAeHpPIefrpFR5CNl1g'
+```
+
+```js:.env.local-modified {6} showLineNumbers
+AUTH0_SECRET= A randomized 32 bit hexadecimal integer
+AUTH0_BASE_URL= Use your own url here, for development locally use local host.
+AUTH0_ISSUER_BASE_URL=Use "Domain" from settings page.
+AUTH0_CLIENT_ID= Use "Client ID" from settings page.
+AUTH0_CLIENT_SECRET=Use 'Client Secret` from settings page.
+DEVREV_PLUG_TOKEN='eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9zdHMuZGV2cmV2LmFpIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiZXhwIjoxNjY2MjM3MTc4LCJodHRwOi8vZGV2cmV2LmFpL2NsaWVudGlkIjoiMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtNVJPd3kxMEQiLCJodHRwOi8vZGV2cmV2LmFpL3N2Y2FjYyI6ImRvbjppZGVudGl0eTpkdnJ2LXVzLTE6ZGV2by81Uk93eTEwRDpzdmNhY2MvMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOmFhdCIsImlhdCI6MTY2MzgxNzk3OCwiaXNzIjoiaHR0cDovL3N0cy5kZXZyZXYuYWkiLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6dG9rZW4vTVcxRlZQc3MiLCJzdWIiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6c3ZjYWNjLzFUSDdUMiJ9.X6kKBzb1JVj-HpEcbHV5tGAN_9-pL2RpMm4qK-fqUVJnYOlk1oUba2-0d0U8TPcwCUknuJhBevTrmIU28NXeCN7mqIDvCz6BUVlHuPgEjffX7Go0z73D8sLsjsDl6oWKGvGq68DupyBk-xd1necM7uzWuI3dNXrji7EF5IZHvJi4k1wmLusJq7eiXR8j7saBF8Ud9mVBVTB0TAsP7Q9W7SwfWkRRVulxAvzeCai2h-ibnbv6o5eXZnOouLwEpCBWy1ls7HW0rMk3NeYf5Q83AlFxvlTCNg0bjg3nWgBaJyVb_54CItWy4q5oQJNLJ-v8wJKWAeHpPIefrpFR5CNl1g'
+```
+
+
+You are now done!

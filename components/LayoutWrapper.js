@@ -7,8 +7,9 @@ import Footer from './Footer'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import { useUser } from '@auth0/nextjs-auth0'
-const LayoutWrapper = ({ children }) => {
+const LayoutWrapper = ({ children, host }) => {
   const {user, error, isLoading} = useUser();
+  // console.log(host);
   if (user) {
     return (
       <SectionContainer>
@@ -43,7 +44,7 @@ const LayoutWrapper = ({ children }) => {
                 ))}
               </div>
               <div>
-                <a href="api/auth/logout"> Logout 
+                <a href="//localhost:3000/api/auth/logout"> Logout 
                 </a>
               </div>
               <ThemeSwitch />
@@ -58,9 +59,9 @@ const LayoutWrapper = ({ children }) => {
   }
   return (
     <SectionContainer>
-      <div className="flex h-screen flex-col justify-between">
+      <div className="flex h-screen flex-col justify-between"> 
         <header className="flex items-center justify-between py-10">
-          <div>
+          <div> 
             <Link href="/" aria-label={siteMetadata.headerTitle}>
               <div className="flex items-center justify-between">
                 <div className="mr-3">
@@ -83,13 +84,13 @@ const LayoutWrapper = ({ children }) => {
                   key={link.title}
                   href={link.href}
                   className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
-                >
+                >{host}
                   {link.title}
                 </Link>
               ))}
             </div>
             <div>
-              <a href="api/auth/login"> Login
+              <a href="//localhost:3000/api/auth/login"> Login
               </a>
             </div>
             <ThemeSwitch />
