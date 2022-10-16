@@ -8,6 +8,11 @@ summary: 'Quick and simple website deployment'
 layout: PostSimple
 bibliography: references-data.bib
 ---
+## Overview
+Quickly get your website deployed with Auth0 and DevRev PLuG!
+
+
+## Using Vercel
 1. Navigate to [vercel.com](https://vercel.com/signup)
 2. Sign up for your account (recommended to continue with GitHub)
 
@@ -24,6 +29,147 @@ bibliography: references-data.bib
 
 Ensure that the framework preset is Next.js and hit deploy.
 
-You can find an example of this deployed website here: []()
+## Auth0 Modifications
+1. Navigate to the `Settings` page in your Auth0 application and modify the application urls to the following:
+
+<Image alt="support" src="/static/images/vauth0.png" width={1600} height={1200} />
+
+Ensure to modify `devrevblog.verce.app` to your vercel deployment's domain.
+
+2. Navigate to `.env.local` and make the following modification
+
+```js:.env.local-original {2} showLineNumbers
+AUTH0_SECRET='574cfa529528cb782358852b1322a8f2905c1efc6375d0aa07a902a877cb945a'
+AUTH0_BASE_URL='http://localhost:3000'
+AUTH0_ISSUER_BASE_URL='https://dev-fovn1s7y.us.auth0.com'
+AUTH0_CLIENT_ID='dFb3YDjxvkJAOLMO2R0F38Ete07VwvYD'
+AUTH0_CLIENT_SECRET='PEBFg3rswdgRHt9Sxq8AgwlWv_VnEsYqktHm7Bt-FaJ-foOjel7I45tdrPOsm_Cv'
+DEVREV_PLUG_TOKEN='eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9zdHMuZGV2cmV2LmFpIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiZXhwIjoxNjY2MjM3MTc4LCJodHRwOi8vZGV2cmV2LmFpL2NsaWVudGlkIjoiMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtNVJPd3kxMEQiLCJodHRwOi8vZGV2cmV2LmFpL3N2Y2FjYyI6ImRvbjppZGVudGl0eTpkdnJ2LXVzLTE6ZGV2by81Uk93eTEwRDpzdmNhY2MvMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOmFhdCIsImlhdCI6MTY2MzgxNzk3OCwiaXNzIjoiaHR0cDovL3N0cy5kZXZyZXYuYWkiLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6dG9rZW4vTVcxRlZQc3MiLCJzdWIiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6c3ZjYWNjLzFUSDdUMiJ9.X6kKBzb1JVj-HpEcbHV5tGAN_9-pL2RpMm4qK-fqUVJnYOlk1oUba2-0d0U8TPcwCUknuJhBevTrmIU28NXeCN7mqIDvCz6BUVlHuPgEjffX7Go0z73D8sLsjsDl6oWKGvGq68DupyBk-xd1necM7uzWuI3dNXrji7EF5IZHvJi4k1wmLusJq7eiXR8j7saBF8Ud9mVBVTB0TAsP7Q9W7SwfWkRRVulxAvzeCai2h-ibnbv6o5eXZnOouLwEpCBWy1ls7HW0rMk3NeYf5Q83AlFxvlTCNg0bjg3nWgBaJyVb_54CItWy4q5oQJNLJ-v8wJKWAeHpPIefrpFR5CNl1g'
+```
+
+```js:.env.local-modified {2} showLineNumbers
+AUTH0_SECRET='574cfa529528cb782358852b1322a8f2905c1efc6375d0aa07a902a877cb945a'
+AUTH0_BASE_URL= [Your Domain] (same as the allowed logout url)
+AUTH0_ISSUER_BASE_URL='https://dev-fovn1s7y.us.auth0.com'
+AUTH0_CLIENT_ID='dFb3YDjxvkJAOLMO2R0F38Ete07VwvYD'
+AUTH0_CLIENT_SECRET='PEBFg3rswdgRHt9Sxq8AgwlWv_VnEsYqktHm7Bt-FaJ-foOjel7I45tdrPOsm_Cv'
+DEVREV_PLUG_TOKEN='eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9zdHMuZGV2cmV2LmFpIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiZXhwIjoxNjY2MjM3MTc4LCJodHRwOi8vZGV2cmV2LmFpL2NsaWVudGlkIjoiMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtNVJPd3kxMEQiLCJodHRwOi8vZGV2cmV2LmFpL3N2Y2FjYyI6ImRvbjppZGVudGl0eTpkdnJ2LXVzLTE6ZGV2by81Uk93eTEwRDpzdmNhY2MvMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOmFhdCIsImlhdCI6MTY2MzgxNzk3OCwiaXNzIjoiaHR0cDovL3N0cy5kZXZyZXYuYWkiLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6dG9rZW4vTVcxRlZQc3MiLCJzdWIiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6c3ZjYWNjLzFUSDdUMiJ9.X6kKBzb1JVj-HpEcbHV5tGAN_9-pL2RpMm4qK-fqUVJnYOlk1oUba2-0d0U8TPcwCUknuJhBevTrmIU28NXeCN7mqIDvCz6BUVlHuPgEjffX7Go0z73D8sLsjsDl6oWKGvGq68DupyBk-xd1necM7uzWuI3dNXrji7EF5IZHvJi4k1wmLusJq7eiXR8j7saBF8Ud9mVBVTB0TAsP7Q9W7SwfWkRRVulxAvzeCai2h-ibnbv6o5eXZnOouLwEpCBWy1ls7HW0rMk3NeYf5Q83AlFxvlTCNg0bjg3nWgBaJyVb_54CItWy4q5oQJNLJ-v8wJKWAeHpPIefrpFR5CNl1g'
+```
+
+3. Make the following modification on `components/LayoutWrapper.js` on the highglighted lines (47, 93)
+```js:components/LayoutWrapper {46-49, 92-95} showLineNumbers
+import siteMetadata from '@/data/siteMetadata'
+import headerNavLinks from '@/data/headerNavLinks'
+import Logo from '@/data/logo.svg'
+import Link from './Link'
+import SectionContainer from './SectionContainer'
+import Footer from './Footer'
+import MobileNav from './MobileNav'
+import ThemeSwitch from './ThemeSwitch'
+import { useUser } from '@auth0/nextjs-auth0'
+const LayoutWrapper = ({ children, host }) => {
+  const {user, error, isLoading} = useUser();
+  // console.log(host);
+  if (user) {
+    return (
+      <SectionContainer>
+        <div className="flex h-screen flex-col justify-between">
+          <header className="flex items-center justify-between py-10">
+            <div>
+              <Link href="/" aria-label={siteMetadata.headerTitle}>
+                <div className="flex items-center justify-between">
+                  <div className="mr-3">
+                    <Logo />
+                  </div>
+                  {typeof siteMetadata.headerTitle === 'string' ? (
+                    <div className="hidden h-6 text-2xl font-semibold sm:block">
+                      {siteMetadata.headerTitle}
+                    </div>
+                  ) : (
+                    siteMetadata.headerTitle
+                  )}
+                </div>
+              </Link>
+            </div>
+            <div className="flex items-center text-base leading-5">
+              <div className="hidden sm:block">
+                {headerNavLinks.map((link) => (
+                  <Link
+                    key={link.title}
+                    href={link.href}
+                    className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
+                  >
+                    {link.title}
+                  </Link>
+                ))}
+              </div>
+              <div>
+                <a href="//localhost:3000/api/auth/logout"> Logout //modify localhost:3000 to your vercel deployment domain
+                </a>
+              </div>
+              <ThemeSwitch />
+              <MobileNav />
+            </div>
+          </header>
+          <main className="mb-auto">{children}</main>
+          <Footer />
+        </div>
+      </SectionContainer>
+    )
+  }
+  return (
+    <SectionContainer>
+      <div className="flex h-screen flex-col justify-between"> 
+        <header className="flex items-center justify-between py-10">
+          <div> 
+            <Link href="/" aria-label={siteMetadata.headerTitle}>
+              <div className="flex items-center justify-between">
+                <div className="mr-3">
+                  <Logo />
+                </div>
+                {typeof siteMetadata.headerTitle === 'string' ? (
+                  <div className="hidden h-6 text-2xl font-semibold sm:block">
+                    {siteMetadata.headerTitle}
+                  </div>
+                ) : (
+                  siteMetadata.headerTitle
+                )}
+              </div>
+            </Link>
+          </div>
+          <div className="flex items-center text-base leading-5">
+            <div className="hidden sm:block">
+              {headerNavLinks.map((link) => (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className="p-1 font-medium text-gray-900 dark:text-gray-100 sm:p-4"
+                >{host}
+                  {link.title}
+                </Link>
+              ))}
+            </div>
+            <div>
+              <a href="//localhost:3000/api/auth/login"> Login  //modify localhost:3000 to your vercel deployment domain
+              </a>
+            </div>
+            <ThemeSwitch />
+            <MobileNav />
+          </div>
+        </header>
+        <main className="mb-auto">{children}</main>
+        <Footer />
+      </div>
+    </SectionContainer>
+  )
+}
+
+export default LayoutWrapper
+
+```
+Now you should be able to commit your changes to main, and have vercel automatically deploy the working website.
+
+
+You can find an example of this deployed website here: [devrevblog.vercel.app/](https://devrevblog.vercel.app/)
 
 You are now done!
