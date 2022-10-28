@@ -15,7 +15,7 @@ export default function Widget({token}) {
                console.log(error);
              }
            }}
-           src={"https://plug.devrev.ai/nextplug/widget.js"}
+           src={"https://plug.devrev.ai/test/widget.js"}
  />
 )
 }

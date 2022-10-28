@@ -56,8 +56,6 @@ export const getServerSideProps = getServerSidePropsWrapper(async (ctx) => {
   const posts = await getAllFilesFrontMatter('blog');
   const url = 'https://api.devrev.ai/token';
   const appToken = process.env.DEVREV_PLUG_TOKEN
-  // const appToken = "eyJhbGciOiJSUzI1NiIsImlzcyI6Imh0dHA6Ly9zdHMuZGV2cmV2LmFpIiwia2lkIjoic3RzX2tpZF9yc2EiLCJ0eXAiOiJKV1QifQ.eyJhdWQiOlsiamFudXMiXSwiZXhwIjoxNjY2MjM3MTc4LCJodHRwOi8vZGV2cmV2LmFpL2NsaWVudGlkIjoiMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS9kZXZvaWQiOiJERVYtNVJPd3kxMEQiLCJodHRwOi8vZGV2cmV2LmFpL3N2Y2FjYyI6ImRvbjppZGVudGl0eTpkdnJ2LXVzLTE6ZGV2by81Uk93eTEwRDpzdmNhY2MvMVRIN1QyIiwiaHR0cDovL2RldnJldi5haS90b2tlbnR5cGUiOiJ1cm46ZGV2cmV2OnBhcmFtczpvYXV0aDp0b2tlbi10eXBlOmFhdCIsImlhdCI6MTY2MzgxNzk3OCwiaXNzIjoiaHR0cDovL3N0cy5kZXZyZXYuYWkiLCJqdGkiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6dG9rZW4vTVcxRlZQc3MiLCJzdWIiOiJkb246aWRlbnRpdHk6ZHZydi11cy0xOmRldm8vNVJPd3kxMEQ6c3ZjYWNjLzFUSDdUMiJ9.X6kKBzb1JVj-HpEcbHV5tGAN_9-pL2RpMm4qK-fqUVJnYOlk1oUba2-0d0U8TPcwCUknuJhBevTrmIU28NXeCN7mqIDvCz6BUVlHuPgEjffX7Go0z73D8sLsjsDl6oWKGvGq68DupyBk-xd1necM7uzWuI3dNXrji7EF5IZHvJi4k1wmLusJq7eiXR8j7saBF8Ud9mVBVTB0TAsP7Q9W7SwfWkRRVulxAvzeCai2h-ibnbv6o5eXZnOouLwEpCBWy1ls7HW0rMk3NeYf5Q83AlFxvlTCNg0bjg3nWgBaJyVb_54CItWy4q5oQJNLJ-v8wJKWAeHpPIefrpFR5CNl1g";
-
   if (session) {
     const headers = {
       Authorization: appToken,
@@ -66,8 +64,8 @@ export const getServerSideProps = getServerSidePropsWrapper(async (ctx) => {
       url,
       {
         grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
-        // subject_token: JSON.stringify({email:session.user.email, display_name:session.user.given_name, external_uid:session.user.sid}),
-        subject_token: JSON.stringify({email:"email3433@gmail.com", display_name:session.user.nickname}),
+        subject_token: JSON.stringify({email:session.user.email, display_name:session.user.given_name, external_uid:session.user.sid}),
+        // subject_token: JSON.stringify({email:, display_name:session.user.nickname}),
         subject_token_type: 'urn:devrev:params:oauth:token-type:userinfo',
         requested_token_type: 'urn:devrev:params:oauth:token-type:session',
       },
@@ -107,7 +105,7 @@ export default function Home({ posts, sessionToken, user }) {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl font-extrabold leading-9 tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
-            Latest
+            DevRev PLG Starter
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             {siteMetadata.description}

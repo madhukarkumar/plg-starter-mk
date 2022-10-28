@@ -1,8 +1,8 @@
 const siteMetadata = {
   title: 'DevRev PLuG',
-  author: 'Aman Singh',
+  author: 'DevRev Copyright 2022',
   headerTitle: 'DevRev PLuG',
-  description: 'A DevRev PLuG demo',
+  description: 'Steps to customize and deploy',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteLogo: '/static/images/logo.png',
