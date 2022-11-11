@@ -1,7 +1,9 @@
 ## Installation
 
 ```bash
-npm install
+npm install 
+or 
+npm ci
 ```
 
 ## Development
